@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Models/Tower/tour_LP.fbx" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Player/Building/Buildings/TowerBuilding.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/Npc/CollisionNpcDetector.cs" type="Script" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 7.11206, 15.8743, 8.44522 )
+
+[node name="tour_LP" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="RootNode" parent="." index="0"]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )
+
+[node name="pylones_LP" parent="RootNode" index="0"]
+transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 4.45104, 3.5286e-07 )
+
+[node name="tubes02_LP" parent="RootNode" index="1"]
+transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, -0.611625, 0.636524, -0.360161 )
+
+[node name="tubes01_LP" parent="RootNode" index="2"]
+transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.0526165, 3.13043, 0.4297 )
+
+[node name="dￃﾩtails_LP" parent="RootNode" index="3"]
+transform = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0.71845, 1.03896, -0.601925 )
+
+[node name="DetectArea" type="Area" parent="." index="1"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="DetectArea" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.739228, 17.5844, 0.274443 )
+shape = SubResource( 1 )
+
+[node name="DetectNpcArea" type="Area" parent="." index="2"]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape" type="CollisionShape" parent="DetectNpcArea" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.739228, 17.5844, 0.274443 )
+shape = SubResource( 1 )

@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Npc/Drone.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/AI/NpcController.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/Player/Building/AiBuilder.cs" type="Script" id=4]
+
+[sub_resource type="NavigationMesh" id=1]
+vertices = PoolVector3Array( -41.8834, 1.5, 26.2321, -41.8834, 1.5, 34.9821, -31.6334, 1.5, 34.9821, -31.6334, 1.5, -35.0179, -41.8834, 1.5, -35.0179, -41.8834, 1.5, -26.2679, 31.3666, 1.5, 34.9821, 41.8666, 1.5, 34.9821, 41.8666, 1.5, 26.2321, 41.8666, 1.5, -26.2679, 41.8666, 1.5, -35.0179, 31.3666, 1.5, -35.0179, -41.8834, 1.5, 17.4821, -41.8834, 1.5, 26.2321, -31.6334, 1.5, 34.9821, -31.6334, 1.5, -35.0179, -41.8834, 1.5, -26.2679, -41.8834, 1.5, -17.5179, 31.3666, 1.5, 34.9821, 41.8666, 1.5, 26.2321, 41.8666, 1.5, 17.4821, 41.8666, 1.5, -17.5179, 41.8666, 1.5, -26.2679, 31.3666, 1.5, -35.0179, -41.8834, 1.5, 17.4821, -31.6334, 1.5, 34.9821, -21.1334, 1.5, 34.9821, -41.8834, 1.5, 8.73214, -21.1334, 1.5, -35.0179, -31.6334, 1.5, -35.0179, -41.8834, 1.5, -17.5179, -41.8834, 1.5, -8.76786, 20.8666, 1.5, 34.9821, 31.3666, 1.5, 34.9821, 41.8666, 1.5, 17.4821, 41.8666, 1.5, 8.73214, 41.8666, 1.5, -17.5179, 31.3666, 1.5, -35.0179, 20.8666, 1.5, -35.0179, 41.8666, 1.5, -8.76786, -41.8834, 1.5, -0.0178566, -10.6334, 1.5, 34.9821, -0.133404, 1.5, 34.9821, 41.8666, 1.5, -0.0178566, 41.8666, 1.5, -8.76786, 20.8666, 1.5, -35.0179, 10.3666, 1.5, -35.0179, -0.133404, 1.5, -35.0179, -41.8834, 1.5, -0.0178566, -0.133404, 1.5, 34.9821, 10.3666, 1.5, 34.9821, 41.8666, 1.5, -0.0178566, 10.3666, 1.5, -35.0179, -0.133404, 1.5, -35.0179, -10.6334, 1.5, -35.0179, -41.8834, 1.5, -0.0178566, -41.8834, 1.5, -0.0178566, -41.8834, 1.5, 8.73214, -21.1334, 1.5, 34.9821, -10.6334, 1.5, 34.9821, -21.1334, 1.5, -35.0179, -41.8834, 1.5, -8.76786, -41.8834, 1.5, -0.0178566, -10.6334, 1.5, -35.0179, 20.8666, 1.5, 34.9821, 41.8666, 1.5, 8.73214, 41.8666, 1.5, -0.0178566, 10.3666, 1.5, 34.9821 )
+polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 5, 4, 3 ), PoolIntArray( 8, 7, 6 ), PoolIntArray( 11, 10, 9 ), PoolIntArray( 14, 13, 12 ), PoolIntArray( 17, 16, 15 ), PoolIntArray( 20, 19, 18 ), PoolIntArray( 23, 22, 21 ), PoolIntArray( 24, 27, 25 ), PoolIntArray( 25, 27, 26 ), PoolIntArray( 30, 29, 31 ), PoolIntArray( 31, 29, 28 ), PoolIntArray( 34, 33, 35 ), PoolIntArray( 35, 33, 32 ), PoolIntArray( 36, 39, 37 ), PoolIntArray( 37, 39, 38 ), PoolIntArray( 42, 41, 40 ), PoolIntArray( 44, 43, 45 ), PoolIntArray( 45, 43, 46 ), PoolIntArray( 52, 51, 47 ), PoolIntArray( 47, 51, 50 ), PoolIntArray( 47, 50, 49 ), PoolIntArray( 47, 49, 48 ), PoolIntArray( 55, 54, 53 ), PoolIntArray( 57, 56, 58 ), PoolIntArray( 58, 56, 59 ), PoolIntArray( 61, 60, 62 ), PoolIntArray( 62, 60, 63 ), PoolIntArray( 65, 64, 66 ), PoolIntArray( 66, 64, 67 ) ]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 3.38452, 2.52305, 12.2971 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
+navmesh = SubResource( 1 )
+script = ExtResource( 3 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="NavigationMeshInstance"]
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="NavigationMeshInstance/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.565544, -0.788055, 0.267944 )
+width = 358.523
+depth = 425.214
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.9041, 2.18629, 9.26613 )
+
+[node name="NpcSpawner" type="Spatial" parent="."]
+
+[node name="Timer" type="Timer" parent="NpcSpawner"]
+wait_time = 5.0
+autostart = true
+
+[node name="NavigationObstacle" type="NavigationObstacle" parent="."]
+
+[node name="Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.4565, 3.75671, 3.58309 )
+script = ExtResource( 4 )
+Placing = [ ExtResource( 2 ) ]
+_timeout = 20.0
+
+[node name="Spawn" type="Area" parent="Spatial"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Spatial/Spawn"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013, -0.013, 0 )
+shape = SubResource( 2 )

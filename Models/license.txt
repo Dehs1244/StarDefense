@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sci-fi Crate
+* source:	https://sketchfab.com/3d-models/sci-fi-crate-0e60a62a8f1e4048b638a32eb0661015
+* author:	Darren McNerney 3D (https://sketchfab.com/DarrenMcnerney3D)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sci-fi Crate" (https://sketchfab.com/3d-models/sci-fi-crate-0e60a62a8f1e4048b638a32eb0661015) by Darren McNerney 3D (https://sketchfab.com/DarrenMcnerney3D) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

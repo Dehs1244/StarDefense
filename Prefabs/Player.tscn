@@ -1,0 +1,188 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/UI/CreditsIcon.png" type="Texture" id=1]
+[ext_resource path="res://Assets/UI/HeartTower.png" type="Texture" id=2]
+[ext_resource path="res://Assets/UI/EnergyIcon.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Player/Building/BuildingsController.cs" type="Script" id=4]
+[ext_resource path="res://Scripts/Player/Building/PlayerBuilder.cs" type="Script" id=5]
+[ext_resource path="res://Scripts/Player/Input/InputController.cs" type="Script" id=6]
+[ext_resource path="res://Scripts/Player/PlayerCamera.cs" type="Script" id=7]
+[ext_resource path="res://Scripts/Player/Player.cs" type="Script" id=8]
+[ext_resource path="res://Materials/UI/UIPanel.tres" type="Material" id=9]
+[ext_resource path="res://Assets/Fonts/MainFont.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Prefabs/Buildings/BuildingIconPrefab.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Player/WaveController.cs" type="Script" id=12]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.509804, 0.509804, 0.509804, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.423529, 0.423529, 0.423529, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[node name="Player" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5621, 1.94665, 0.708155 )
+script = ExtResource( 8 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.701133, 0.71303, 0, -0.71303, 0.701133, 0.975002, 10.6579, 3.58603 )
+near = 0.87
+far = 235.3
+script = ExtResource( 7 )
+
+[node name="InputMaster" type="Spatial" parent="."]
+script = ExtResource( 6 )
+
+[node name="BuilderMaster" type="Spatial" parent="."]
+script = ExtResource( 5 )
+
+[node name="WaveMaster" type="Node" parent="."]
+script = ExtResource( 12 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="BuildingsController" type="PanelContainer" parent="UI" groups=["UI"]]
+material = ExtResource( 9 )
+anchor_left = 0.253
+anchor_top = 0.718
+anchor_right = 0.817
+anchor_bottom = 0.988
+margin_left = -0.0720215
+margin_top = 0.199982
+margin_right = 22.392
+margin_bottom = 0.200012
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 4 )
+IconPrefab = ExtResource( 11 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/BuildingsController" groups=["UI"]]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 595.0
+margin_bottom = 157.0
+rect_min_size = Vector2( 200, 0 )
+scroll_vertical_enabled = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/BuildingsController/ScrollContainer" groups=["UI"]]
+custom_constants/separation = 13
+
+[node name="PanelContainer" type="PanelContainer" parent="UI" groups=["UI"]]
+material = ExtResource( 9 )
+anchor_left = 0.015
+anchor_top = 0.74
+anchor_right = 0.146
+anchor_bottom = 0.975
+margin_left = 0.639999
+margin_top = -3.05176e-05
+margin_right = 0.495987
+margin_bottom = -7.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="GridContainer" type="GridContainer" parent="UI/PanelContainer" groups=["UI"]]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 129.0
+margin_bottom = 129.0
+columns = 2
+
+[node name="HealthIcon" type="TextureRect" parent="UI/PanelContainer/GridContainer" groups=["UI"]]
+margin_right = 34.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 34, 34 )
+texture = ExtResource( 2 )
+expand = true
+
+[node name="HealthLabel" type="Label" parent="UI/PanelContainer/GridContainer" groups=["UI"]]
+margin_left = 38.0
+margin_top = 10.0
+margin_right = 88.0
+margin_bottom = 24.0
+text = "HEALTH"
+
+[node name="EnergyIcon" type="TextureRect" parent="UI/PanelContainer/GridContainer" groups=["UI"]]
+margin_top = 38.0
+margin_right = 34.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 34, 34 )
+texture = ExtResource( 3 )
+expand = true
+
+[node name="EnergyLabel" type="Label" parent="UI/PanelContainer/GridContainer" groups=["UI"]]
+margin_left = 38.0
+margin_top = 48.0
+margin_right = 88.0
+margin_bottom = 62.0
+text = "ENERGY"
+
+[node name="CreditsIcon" type="TextureRect" parent="UI/PanelContainer/GridContainer" groups=["UI"]]
+margin_top = 76.0
+margin_right = 34.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 34, 34 )
+texture = ExtResource( 1 )
+expand = true
+
+[node name="CreditsLabel" type="Label" parent="UI/PanelContainer/GridContainer" groups=["UI"]]
+margin_left = 38.0
+margin_top = 86.0
+margin_right = 88.0
+margin_bottom = 100.0
+text = "Credits"
+
+[node name="ErrorText" type="RichTextLabel" parent="UI"]
+margin_right = 346.0
+margin_bottom = 90.0
+custom_colors/default_color = Color( 1, 0, 0, 1 )
+custom_fonts/bold_italics_font = ExtResource( 10 )
+custom_fonts/normal_font = ExtResource( 10 )
+tab_size = 12
+text = "ERROR TEXT"
+
+[node name="Waves" type="PanelContainer" parent="UI" groups=["UI"]]
+material = ExtResource( 9 )
+anchor_left = 0.874
+anchor_top = 0.013
+anchor_right = 0.988
+anchor_bottom = 0.205
+margin_left = 0.0239868
+margin_top = 0.2
+margin_right = 0.287964
+custom_styles/panel = SubResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Waves"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 112.0
+margin_bottom = 110.0
+
+[node name="WavesLabel" type="Label" parent="UI/Waves/VBoxContainer"]
+margin_right = 106.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 10 )
+text = "Волна:"
+autowrap = true
+
+[node name="DestroyedLabel" type="Label" parent="UI/Waves/VBoxContainer"]
+margin_top = 29.0
+margin_right = 106.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 10 )
+text = "Уничтожено:"
+autowrap = true
+
+[node name="TotalEnemiesLabel" type="Label" parent="UI/Waves/VBoxContainer"]
+margin_top = 58.0
+margin_right = 106.0
+margin_bottom = 83.0
+custom_fonts/font = ExtResource( 10 )
+text = "Осталось:"
+autowrap = true
