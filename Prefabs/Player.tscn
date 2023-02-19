@@ -39,14 +39,14 @@ near = 0.87
 far = 235.3
 script = ExtResource( 7 )
 
+[node name="WaveMaster" type="Node" parent="."]
+script = ExtResource( 12 )
+
 [node name="InputMaster" type="Spatial" parent="."]
 script = ExtResource( 6 )
 
 [node name="BuilderMaster" type="Spatial" parent="."]
 script = ExtResource( 5 )
-
-[node name="WaveMaster" type="Node" parent="."]
-script = ExtResource( 12 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -138,7 +138,7 @@ margin_right = 88.0
 margin_bottom = 100.0
 text = "Credits"
 
-[node name="ErrorText" type="RichTextLabel" parent="UI"]
+[node name="ErrorText" type="RichTextLabel" parent="UI" groups=["UI"]]
 margin_right = 346.0
 margin_bottom = 90.0
 custom_colors/default_color = Color( 1, 0, 0, 1 )
@@ -158,20 +158,20 @@ margin_top = 0.2
 margin_right = 0.287964
 custom_styles/panel = SubResource( 1 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Waves"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Waves" groups=["UI"]]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 112.0
 margin_bottom = 110.0
 
-[node name="WavesLabel" type="Label" parent="UI/Waves/VBoxContainer"]
+[node name="WavesLabel" type="Label" parent="UI/Waves/VBoxContainer" groups=["UI"]]
 margin_right = 106.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 10 )
 text = "Волна:"
 autowrap = true
 
-[node name="DestroyedLabel" type="Label" parent="UI/Waves/VBoxContainer"]
+[node name="DestroyedLabel" type="Label" parent="UI/Waves/VBoxContainer" groups=["UI"]]
 margin_top = 29.0
 margin_right = 106.0
 margin_bottom = 54.0
@@ -179,10 +179,26 @@ custom_fonts/font = ExtResource( 10 )
 text = "Уничтожено:"
 autowrap = true
 
-[node name="TotalEnemiesLabel" type="Label" parent="UI/Waves/VBoxContainer"]
+[node name="TotalEnemiesLabel" type="Label" parent="UI/Waves/VBoxContainer" groups=["UI"]]
 margin_top = 58.0
 margin_right = 106.0
 margin_bottom = 83.0
 custom_fonts/font = ExtResource( 10 )
 text = "Осталось:"
 autowrap = true
+
+[node name="NotificationPool" type="ScrollContainer" parent="UI" groups=["UI"]]
+anchor_top = 0.223
+anchor_right = 0.139
+anchor_bottom = 0.573
+margin_left = 1.0
+margin_top = 0.199997
+margin_right = -0.336014
+margin_bottom = 0.199982
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/NotificationPool" groups=["UI"]]
+custom_constants/separation = 0
+
+[node name="GetCreditsTimer" type="Timer" parent="."]
+wait_time = 5.0

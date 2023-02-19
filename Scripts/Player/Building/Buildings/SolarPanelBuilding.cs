@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 using StarDefense.Attrubutes;
 using Godot;
 
-[Building("SolarPanel", "Солнечная панель", 125)]
+[Building("SolarPanel", "Солнечная панель", 90)]
 public class SolarPanelBuilding : BaseBuilding
 {
 	public override uint MaxHealth => 50;
 
 	public override int Damage => 1;
 
-	public override uint Cost => 125;
+	public override uint Cost => 90;
 
 	private Timer _timer;
 

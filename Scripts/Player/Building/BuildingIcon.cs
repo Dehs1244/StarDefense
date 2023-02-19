@@ -15,6 +15,7 @@ public class BuildingIcon : Control
 	private Label _costDisplay { get; set; }
 	private string _buildingResource { get; set; }
 	private BuildingResourceDescriptor _descriptor = new BuildingResourceDescriptor();
+	public uint Cost { get; private set; }
 
 	[Export]
 	public string TexturePath;
@@ -43,7 +44,9 @@ public class BuildingIcon : Control
 	{
 		SetIcon(_descriptor.CreateIcon(data.Name, data.Extension));
 		_buildingResource = data.Name;
+		IconName = data.BuildingName;
 		SetText(data.BuildingName);
+		Cost = data.Cost;
 		SetCost(data.Cost.ToString());
 	}
 

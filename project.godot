@@ -28,6 +28,7 @@ _global_script_class_icons={
 
 config/name="Star Defense"
 run/main_scene="res://Maps/Tests/TestLevel.tscn"
+boot_splash/show_image=false
 config/icon="res://icon.png"
 
 [display]
@@ -75,4 +76,3 @@ quality/shadow_atlas/cubemap_size=1024
 quality/reflections/texture_array_reflections.mobile=true
 quality/reflections/high_quality_ggx.mobile=true
 quality/filters/msaa=2
-environment/default_environment="res://default_env.tres"

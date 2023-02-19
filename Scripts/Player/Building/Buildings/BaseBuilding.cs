@@ -7,7 +7,7 @@ using Godot;
 
 public abstract class BaseBuilding : Spatial, IBuilding, IBlueNpcAgent
 {
-    public int Health { get; set; } = 100;
+    public int Health { get; set; }
 
     public abstract uint MaxHealth { get; }
 
@@ -17,6 +17,8 @@ public abstract class BaseBuilding : Spatial, IBuilding, IBlueNpcAgent
     public bool CanPlace { get; set; }
     public bool IsBuildingNow { get; set; }
     public bool IsCollided { get; set; }
+
+    private int _overlapped;
 
     public Area DetectCollision;
     public Area DetectNpcCollision;
@@ -117,6 +119,7 @@ public abstract class BaseBuilding : Spatial, IBuilding, IBlueNpcAgent
         _ghostMaterial = ResourceLoader.Load<SpatialMaterial>("res://Materials/Buildings/GhostBuilding.tres");
         _errorMaterial = ResourceLoader.Load<SpatialMaterial>("res://Materials/Buildings/ErrorBuilding.tres");
         _childMeshes = _GetMesh().ToList();
+        Health = (int)MaxHealth;
 
         foreach(var mesh in _childMeshes)
         {
@@ -167,6 +170,7 @@ public abstract class BaseBuilding : Spatial, IBuilding, IBlueNpcAgent
     public void _OnEnterBody(Node body)
     {
         if (body.Name == "DetectNpcArea") return;
+        _overlapped++;
         if (IsBuildingNow)
         {
             IsCollided = true;
@@ -189,8 +193,9 @@ public abstract class BaseBuilding : Spatial, IBuilding, IBlueNpcAgent
 
     public void _OnLeaveBody(Node body)
     {
+        _overlapped--;
         //I don't know how to fix it
-        if (IsBuildingNow)
+        if (IsBuildingNow && _overlapped < 1)
         {
             IsCollided = false;
             DisableErrorMode();
@@ -241,7 +246,7 @@ public abstract class BaseBuilding : Spatial, IBuilding, IBlueNpcAgent
     public virtual void LookAtPosition(Vector3 position)
         => LookAt(position, Vector3.Up);
 
-    public virtual Vector3 GetPosition() => Transform.origin;
+    public virtual Vector3 GetPosition() => GlobalTransform.origin;
 
     public bool Dead()
     {

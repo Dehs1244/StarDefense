@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -63,11 +63,17 @@ public sealed class BuildingsController : NodeSingletone<BuildingsController>
 			{
 				if (!_builder.CurrentBuilding.CanPlace || _builder.CurrentBuilding.IsCollided) return;
 				_builder.Place(_builder.CurrentBuilding);
+				Player.Instance.Credits -= (int)_builder.CurrentBuilding.Cost;
 				_builder.CurrentBuilding = null;
 			}
 
 			if (context.HoveredUI is BuildingIcon icon && context.Button == ButtonList.Left)
 			{
+				if(Player.Instance.Credits < icon.Cost)
+                {
+					Player.Instance.AddNotification($"Не хватает кредитов для приобритения {icon.IconName}");
+					return;
+                }
 				if (!Player.Instance.IsHasTower() && icon.GetResourceName() != "Tower") return;
 
 				var building = icon.CreateBuilding();

@@ -35,6 +35,8 @@ public class WaveController : NodeSingletone<WaveController>
     private string _savedEnemiesText;
     private string _savedWaveText;
 
+    public event Action OnNewWave;
+
     public override void _Ready()
     {
         base._Ready();
@@ -51,7 +53,11 @@ public class WaveController : NodeSingletone<WaveController>
 
     public void Update()
     {
-        if (TotalEnemies < 1) Wave += 1;
+        if (TotalEnemies < 1)
+        {
+            Wave += 1;
+            OnNewWave?.Invoke();
+        }
         _destroyedDisplay.Text = $"{_savedDestroyedText} {Destroyed}";
         _enemiesDisplay.Text = $"{_savedEnemiesText} {TotalEnemies}";
         _waveDisplay.Text = $"{_savedWaveText} {Wave}";

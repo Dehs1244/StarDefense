@@ -13,7 +13,7 @@ public class DroneNpc : BaseRedShootableNpc
 	public override void _Ready()
 	{
 		base._Ready();
-		Health = 300;
+		Health = 500;
 	}
 
 	public override void OnActivateAi()
@@ -56,6 +56,7 @@ public class DroneNpc : BaseRedShootableNpc
 	{
 		INpcAgent agent = context.Agent;
 		if (context.NpcDetector != null) agent = context.NpcDetector.GetCollisionOwner() as INpcAgent;
+		if (agent == null) agent = _shootTarget;
 		if (agent == null) return;
 		agent.GetDamage(10);
 		if (agent.Health <= 0 && _shootTarget == agent)

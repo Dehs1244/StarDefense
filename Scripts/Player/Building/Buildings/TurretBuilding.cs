@@ -11,7 +11,7 @@ public class TurretBuilding : BaseBuilding, IShootable
 {
 	public override uint MaxHealth => 200;
 
-	public override int Damage => 40;
+	public override int Damage => 30;
 
 	public override uint Cost => 120;
 

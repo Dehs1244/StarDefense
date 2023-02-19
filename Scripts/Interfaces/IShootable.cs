@@ -8,5 +8,6 @@ using Godot;
 public interface IShootable
 {
     void Shoot(Vector3 dir);
+    Vector3 GetPosition();
     void OnShoot(ShootContext context);
 }

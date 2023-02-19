@@ -33,7 +33,7 @@ public class MineBuilding : BaseBuilding
 
 	public void _AddMoney()
 	{
-		Player.Instance.Credits += 3;
+		Player.Instance.Credits += 10;
 	}
 
 	protected override IEnumerable<MeshInstance> _GetMesh()

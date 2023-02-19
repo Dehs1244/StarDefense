@@ -41,6 +41,16 @@ namespace StarDefense.Helpers
             }
         }
 
+        public static IEnumerable<T> WithInterfaceDefined<T>() =>
+            Assembly.GetExecutingAssembly().GetTypes()
+            .Where(x => x.GetInterface(nameof(T)) != null)
+            .Select(x=> (T)Activator.CreateInstance(x));
+
+        public static IEnumerable<T> WithClassExtends<T>() =>
+            Assembly.GetExecutingAssembly().GetTypes()
+            .Where(x => x.IsSubclassOf(typeof(T)))
+            .Select(x => (T)Activator.CreateInstance(x));
+
         public static IEnumerable<string> WithResourceAttributeDefinedNames<T>(ResourceAttribute attribute)
             where T : ResourceAttribute
             => Assembly.GetExecutingAssembly().GetTypes()

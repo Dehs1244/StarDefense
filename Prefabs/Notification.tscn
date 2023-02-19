@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Fonts/MainFont.tres" type="DynamicFont" id=1]
+
+[node name="Notification" type="Label"]
+anchor_right = 0.191
+anchor_bottom = 0.038
+margin_right = 0.415985
+margin_bottom = 0.199999
+custom_colors/font_color = Color( 0.968627, 1, 0, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Sample Text"

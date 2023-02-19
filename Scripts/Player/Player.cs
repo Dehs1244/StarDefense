@@ -16,10 +16,20 @@ public class Player : SpatialSingletone<Player>, IPlayer
 	public int Energy { get; set; }
 	public int Credits { get; set; }
 
+	[Export]
+	public int NotificationTimeout { get; set; }
+	private float _timer;
+
 	private Label _displayHealth;
 	private Label _displayEnergy;
 	private Label _displayCredits;
 	private RichTextLabel _displayError;
+	private VBoxContainer _notificationPool;
+
+	private Timer _getCredits;
+
+	[Export]
+	private PackedScene _specimenNotification;
 
 	private List<IBlueNpcAgent> _buildings = new List<IBlueNpcAgent>();
 	public IEnumerable<IBlueNpcAgent> Buildings => _buildings;
@@ -30,6 +40,20 @@ public class Player : SpatialSingletone<Player>, IPlayer
 		_displayEnergy = GetNode<Label>("UI/PanelContainer/GridContainer/EnergyLabel");
 		_displayCredits = GetNode<Label>("UI/PanelContainer/GridContainer/CreditsLabel");
 		_displayError = GetNode<RichTextLabel>("UI/ErrorText");
+		_getCredits = GetNode<Timer>("GetCreditsTimer");
+
+		_getCredits.Connect("timeout", this, "_GetCredits");
+	}
+
+	private void _GetCredits()
+	{
+		if (!IsHasTower()) return;
+		Credits += 15;
+	}
+
+	protected override void _OnAwake()
+	{
+		_notificationPool = GetNode<VBoxContainer>("UI/NotificationPool/VBoxContainer");
 	}
 
 	public override void _Process(float delta)
@@ -37,7 +61,13 @@ public class Player : SpatialSingletone<Player>, IPlayer
 		_displayHealth.Text = Health.ToString();
 		_displayCredits.Text = Credits.ToString();
 		_displayEnergy.Text = Energy.ToString();
-		if(_tower == null)
+	}
+
+	public override void _PhysicsProcess(float delta)
+	{
+		base._PhysicsProcess(delta);
+
+		if (_tower == null)
 		{
 			_displayError.Text = "Установите главную башню!";
 		}
@@ -45,6 +75,17 @@ public class Player : SpatialSingletone<Player>, IPlayer
 		{
 			_displayError.Text = "";
 		}
+
+		if (_notificationPool.GetChildCount() > 0)
+		{
+			_timer -= 1 * delta;
+			if (_timer < 1)
+			{
+				_notificationPool.GetChild(0).QueueFree();
+				_timer = NotificationTimeout;
+			}
+		}
+		else _timer = NotificationTimeout;
 	}
 
 	public bool IsHasTower() => _tower != null;
@@ -52,6 +93,7 @@ public class Player : SpatialSingletone<Player>, IPlayer
 	public void SetMainTower(TowerBuilding tower)
 	{
 		_tower = tower;
+		_getCredits.Start();
 		AiBuilder.Instance.IsActive = true;
 	}
 
@@ -73,6 +115,13 @@ public class Player : SpatialSingletone<Player>, IPlayer
 	public void GetDamage(int damage)
 	{
 		Health -= damage;
+	}
+
+	public void AddNotification(string notification)
+	{
+		Label copyCreated = _specimenNotification.Instance<Label>();
+		copyCreated.Text = notification;
+		_notificationPool.AddChild(copyCreated);
 	}
 
 	public void Heal(int heals)

@@ -16,6 +16,7 @@ public class AiBuilder : SpatialSingletone<AiBuilder>
 
     public int SpawnedEnemies { get; private set; }
 
+    [Export]
     public int MaxEnemies { get; set; }
 
     public bool IsActive { get; set; }
@@ -31,11 +32,17 @@ public class AiBuilder : SpatialSingletone<AiBuilder>
         _random.Randomize();
         _shape = (BoxShape)_spawnArea.ShapeOwnerGetShape(0, 0);
         IsActive = false;
+        WaveController.Instance.OnNewWave += () =>
+        {
+            SpawnedEnemies = 0;
+            MaxEnemies += 3;
+        };
     }
 
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
+        if (!Player.Instance.IsHasTower() || SpawnedEnemies >= MaxEnemies) return;
         _timer += 1 * delta;
         if (_timer < _timeout) return;
         _timer = 0;
