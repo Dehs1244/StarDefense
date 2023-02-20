@@ -29,14 +29,14 @@ public class MenuController : NodeSingletone<MenuController>
 
         var main = _menus.Where(x => Attribute.IsDefined(x.GetType(), typeof(StartMenuAttribute))).First();
         GD.Print(main);
-        main.Click();
+        main.Click(null);
     }
 
-    public void RequireClick(string path)
+    public void RequireClick(string path, ButtonMenu sender)
     {
         var menu = _menus.Where(x => x.PathName == path).FirstOrDefault();
         if (menu == null) return;
-        menu.Click();
+        menu.Click(sender);
     }
 
     public override MenuController CreateInstance() => this;

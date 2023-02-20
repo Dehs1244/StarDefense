@@ -9,17 +9,18 @@ public abstract class BaseMenuCategory : IMenuCategory
 {
     public abstract string PathName { get; }
     public event Action OnClicked;
-    private Control _panel;
+    protected Control _panel;
     public static Control MainPanel { get; private set; }
 
-    public void Click()
+    public void Click(ButtonMenu sender)
     {
-        OnActivate();
+        if (!_OnActivate(sender)) return;
         OnClicked?.Invoke();
         if (MainPanel == null) MainPanel = _panel;
         MainPanel.Visible = false;
         _panel.Visible = true;
         MainPanel = _panel;
+        _OnShow(sender);
     }
 
     public void SetPanel(Control panel)
@@ -27,8 +28,14 @@ public abstract class BaseMenuCategory : IMenuCategory
         _panel = panel;
     }
 
-    public virtual void OnActivate()
+    protected virtual bool _OnActivate(ButtonMenu sender)
     {
+        return true;
+    }
+
+    protected virtual void _OnShow(ButtonMenu sender)
+    {
+
     }
 
     public void WhenClicked(Action func)

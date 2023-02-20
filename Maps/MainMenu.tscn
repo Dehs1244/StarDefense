@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Fonts/ButtonFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Fonts/Oswald-VariableFont_wght.ttf" type="DynamicFontData" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Assets/Fonts/MainFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Scripts/UI/ButtonMenu.cs" type="Script" id=6]
 [ext_resource path="res://Scripts/UI/ExitButton.cs" type="Script" id=7]
+[ext_resource path="res://Scripts/Maps/MapSwitcherController.cs" type="Script" id=8]
+[ext_resource path="res://Scripts/UI/ButtonLoadMenu.cs" type="Script" id=9]
+[ext_resource path="res://Maps/DarkField.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -15,6 +18,7 @@ font_data = ExtResource( 2 )
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -278, 26 )
 script = ExtResource( 4 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -25,6 +29,7 @@ margin_right = 2.0
 color = Color( 0.145098, 0, 0.0745098, 1 )
 
 [node name="MainMenu" type="VBoxContainer" parent="."]
+visible = false
 anchor_left = 0.065
 anchor_top = 0.1
 anchor_right = 0.65
@@ -153,6 +158,9 @@ anchor_right = 0.702
 anchor_bottom = 0.98
 theme = ExtResource( 3 )
 text = "Play"
+script = ExtResource( 9 )
+PathCategory = "LoadMenu"
+LoadingMap = ExtResource( 10 )
 
 [node name="Button3" type="Button" parent="MapSwitcher"]
 margin_top = 334.0
@@ -163,3 +171,33 @@ custom_fonts/font = ExtResource( 1 )
 text = "Back"
 script = ExtResource( 6 )
 PathCategory = "MainMenu"
+
+[node name="LoadMenu" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.065
+anchor_top = 0.1
+anchor_right = 0.65
+anchor_bottom = 0.352
+margin_right = 311.0
+margin_bottom = 303.0
+custom_constants/separation = 27
+alignment = 1
+
+[node name="Label" type="Label" parent="LoadMenu"]
+margin_top = 153.0
+margin_right = 910.0
+margin_bottom = 249.0
+custom_fonts/font = SubResource( 1 )
+text = "STAR DEFENSE"
+align = 1
+
+[node name="Label2" type="Label" parent="LoadMenu"]
+margin_top = 276.0
+margin_right = 910.0
+margin_bottom = 301.0
+custom_fonts/font = ExtResource( 5 )
+text = "Загрузка карты, подождите..."
+align = 1
+
+[node name="MapSwitcherMaster" type="Node" parent="."]
+script = ExtResource( 8 )

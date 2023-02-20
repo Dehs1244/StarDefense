@@ -24,7 +24,7 @@ public class DroneNpc : BaseRedShootableNpc
 	public override void _Process(float delta)
 	{
 		base._Process(delta);
-		if (_shootTarget != null && _shootTarget.Health < 20) _shootTarget = null;
+		if (_shootTarget != null && _shootTarget.Health < 1) _shootTarget = null;
 		if (_shootTarget == null) return;
 
 		_timer += 1 * delta;

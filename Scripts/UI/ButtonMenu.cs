@@ -17,8 +17,8 @@ public class ButtonMenu : Button
         Connect("button_up", this, "_Click");
     }
 
-    private void _Click()
+    protected virtual void _Click()
     {
-        MenuController.Instance.RequireClick(PathCategory);
+        MenuController.Instance.RequireClick(PathCategory, this);
     }
 }
