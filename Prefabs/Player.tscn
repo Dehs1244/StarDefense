@@ -67,13 +67,14 @@ IconPrefab = ExtResource( 11 )
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/BuildingsController" groups=["UI"]]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 595.0
-margin_bottom = 157.0
+margin_right = 739.384
+margin_bottom = 189.4
 rect_min_size = Vector2( 200, 0 )
 scroll_vertical_enabled = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/BuildingsController/ScrollContainer" groups=["UI"]]
 custom_constants/separation = 13
+alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="UI" groups=["UI"]]
 material = ExtResource( 9 )
@@ -90,8 +91,8 @@ custom_styles/panel = SubResource( 1 )
 [node name="GridContainer" type="GridContainer" parent="UI/PanelContainer" groups=["UI"]]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 129.0
-margin_bottom = 129.0
+margin_right = 162.536
+margin_bottom = 157.2
 columns = 2
 
 [node name="HealthIcon" type="TextureRect" parent="UI/PanelContainer/GridContainer" groups=["UI"]]
@@ -161,11 +162,11 @@ custom_styles/panel = SubResource( 1 )
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Waves" groups=["UI"]]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 112.0
-margin_bottom = 110.0
+margin_right = 141.184
+margin_bottom = 133.04
 
 [node name="WavesLabel" type="Label" parent="UI/Waves/VBoxContainer" groups=["UI"]]
-margin_right = 106.0
+margin_right = 136.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 10 )
 text = "Волна:"
@@ -173,7 +174,7 @@ autowrap = true
 
 [node name="DestroyedLabel" type="Label" parent="UI/Waves/VBoxContainer" groups=["UI"]]
 margin_top = 29.0
-margin_right = 106.0
+margin_right = 136.0
 margin_bottom = 54.0
 custom_fonts/font = ExtResource( 10 )
 text = "Уничтожено:"
@@ -181,7 +182,7 @@ autowrap = true
 
 [node name="TotalEnemiesLabel" type="Label" parent="UI/Waves/VBoxContainer" groups=["UI"]]
 margin_top = 58.0
-margin_right = 106.0
+margin_right = 136.0
 margin_bottom = 83.0
 custom_fonts/font = ExtResource( 10 )
 text = "Осталось:"
@@ -199,6 +200,3 @@ scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/NotificationPool" groups=["UI"]]
 custom_constants/separation = 0
-
-[node name="GetCreditsTimer" type="Timer" parent="."]
-wait_time = 5.0

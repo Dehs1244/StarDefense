@@ -30,27 +30,23 @@ color = Color( 0.145098, 0, 0.0745098, 1 )
 
 [node name="MainMenu" type="VBoxContainer" parent="."]
 visible = false
-anchor_left = 0.065
-anchor_top = 0.1
-anchor_right = 0.65
-anchor_bottom = 0.352
-margin_right = 311.0
-margin_bottom = 303.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_constants/separation = 27
 alignment = 1
 
 [node name="Label" type="Label" parent="MainMenu"]
-margin_top = 84.0
-margin_right = 910.0
-margin_bottom = 180.0
+margin_top = 157.0
+margin_right = 1024.0
+margin_bottom = 253.0
 custom_fonts/font = SubResource( 1 )
 text = "STAR DEFENSE"
 align = 1
 
 [node name="Button" type="Button" parent="MainMenu"]
-margin_top = 207.0
-margin_right = 910.0
-margin_bottom = 243.0
+margin_top = 280.0
+margin_right = 1024.0
+margin_bottom = 316.0
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 1 )
 text = "Play"
@@ -58,9 +54,9 @@ script = ExtResource( 6 )
 PathCategory = "MapSwitcher"
 
 [node name="Button2" type="Button" parent="MainMenu"]
-margin_top = 270.0
-margin_right = 910.0
-margin_bottom = 306.0
+margin_top = 343.0
+margin_right = 1024.0
+margin_bottom = 379.0
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 1 )
 text = "About Project"
@@ -68,9 +64,9 @@ script = ExtResource( 6 )
 PathCategory = "AboutMenu"
 
 [node name="Button3" type="Button" parent="MainMenu"]
-margin_top = 333.0
-margin_right = 910.0
-margin_bottom = 369.0
+margin_top = 406.0
+margin_right = 1024.0
+margin_bottom = 442.0
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 1 )
 text = "Exit"
@@ -78,34 +74,30 @@ script = ExtResource( 7 )
 
 [node name="AboutMenu" type="VBoxContainer" parent="."]
 visible = false
-anchor_left = 0.065
-anchor_top = 0.1
-anchor_right = 0.65
-anchor_bottom = 0.352
-margin_right = 311.0
-margin_bottom = 303.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_constants/separation = 27
 alignment = 1
 
 [node name="Label" type="Label" parent="AboutMenu"]
-margin_top = 116.0
-margin_right = 870.0
-margin_bottom = 212.0
+margin_top = 189.0
+margin_right = 1024.0
+margin_bottom = 285.0
 custom_fonts/font = SubResource( 1 )
 text = "STAR DEFENSE"
 align = 1
 
 [node name="Label2" type="Label" parent="AboutMenu"]
-margin_top = 239.0
-margin_right = 870.0
-margin_bottom = 275.0
+margin_top = 312.0
+margin_right = 1024.0
+margin_bottom = 348.0
 custom_fonts/font = ExtResource( 1 )
 text = "Проект разработан для курсового проекта на тему \"Создание видеоигры в жанре Tower Defense\""
 
 [node name="Button3" type="Button" parent="AboutMenu"]
-margin_top = 302.0
-margin_right = 870.0
-margin_bottom = 338.0
+margin_top = 375.0
+margin_right = 1024.0
+margin_bottom = 411.0
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 1 )
 text = "Back"
@@ -113,37 +105,30 @@ script = ExtResource( 6 )
 PathCategory = "MainMenu"
 
 [node name="MapSwitcher" type="VBoxContainer" parent="."]
-visible = false
-anchor_left = 0.065
-anchor_top = 0.1
-anchor_right = 0.65
-anchor_bottom = 0.352
-margin_right = 311.0
-margin_bottom = 303.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
 custom_constants/separation = 27
 alignment = 1
 
 [node name="Label" type="Label" parent="MapSwitcher"]
-margin_top = 84.0
-margin_right = 823.0
-margin_bottom = 180.0
+margin_top = 217.0
+margin_right = 1280.0
+margin_bottom = 313.0
 custom_fonts/font = SubResource( 1 )
 text = "STAR DEFENSE"
 align = 1
 
 [node name="ColorRect" type="ColorRect" parent="MapSwitcher"]
-margin_top = 207.0
-margin_right = 823.0
-margin_bottom = 307.0
+margin_top = 340.0
+margin_right = 1280.0
+margin_bottom = 440.0
 rect_min_size = Vector2( 15, 100 )
 color = Color( 0.513726, 0.0196078, 0.886275, 1 )
 
 [node name="Label" type="Label" parent="MapSwitcher/ColorRect"]
-anchor_left = 0.375
-anchor_top = 0.05
-anchor_right = 0.585
+anchor_right = 1.0
 anchor_bottom = 0.31
 margin_left = 0.499992
 margin_right = 0.499985
@@ -152,10 +137,11 @@ text = "DarkField"
 align = 1
 
 [node name="Button" type="Button" parent="MapSwitcher/ColorRect"]
-anchor_left = 0.282
-anchor_top = 0.41
-anchor_right = 0.702
-anchor_bottom = 0.98
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 46.0
+margin_right = -100.0
 theme = ExtResource( 3 )
 text = "Play"
 script = ExtResource( 9 )
@@ -163,9 +149,9 @@ PathCategory = "LoadMenu"
 LoadingMap = ExtResource( 10 )
 
 [node name="Button3" type="Button" parent="MapSwitcher"]
-margin_top = 334.0
-margin_right = 823.0
-margin_bottom = 370.0
+margin_top = 467.0
+margin_right = 1280.0
+margin_bottom = 503.0
 theme = ExtResource( 3 )
 custom_fonts/font = ExtResource( 1 )
 text = "Back"
@@ -174,27 +160,23 @@ PathCategory = "MainMenu"
 
 [node name="LoadMenu" type="VBoxContainer" parent="."]
 visible = false
-anchor_left = 0.065
-anchor_top = 0.1
-anchor_right = 0.65
-anchor_bottom = 0.352
-margin_right = 311.0
-margin_bottom = 303.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_constants/separation = 27
 alignment = 1
 
 [node name="Label" type="Label" parent="LoadMenu"]
-margin_top = 153.0
-margin_right = 910.0
-margin_bottom = 249.0
+margin_top = 226.0
+margin_right = 1024.0
+margin_bottom = 322.0
 custom_fonts/font = SubResource( 1 )
 text = "STAR DEFENSE"
 align = 1
 
 [node name="Label2" type="Label" parent="LoadMenu"]
-margin_top = 276.0
-margin_right = 910.0
-margin_bottom = 301.0
+margin_top = 349.0
+margin_right = 1024.0
+margin_bottom = 374.0
 custom_fonts/font = ExtResource( 5 )
 text = "Загрузка карты, подождите..."
 align = 1

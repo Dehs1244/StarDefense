@@ -27,12 +27,15 @@ _global_script_class_icons={
 [application]
 
 config/name="Star Defense"
-run/main_scene="res://Maps/Tests/TestLevel.tscn"
+run/main_scene="res://Maps/MainMenu.tscn"
 boot_splash/show_image=false
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [display]
 
+window/size/width=1280
+window/size/height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 

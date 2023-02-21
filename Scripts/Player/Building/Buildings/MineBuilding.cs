@@ -14,6 +14,7 @@ public class MineBuilding : BaseBuilding
 	public override int Damage => 1;
 
 	public override uint Cost => 20;
+	private RandomNumberGenerator _random;
 
 	private MeshInstance _mainMesh;
 	private Timer _timer;
@@ -21,6 +22,7 @@ public class MineBuilding : BaseBuilding
 	public override void _Ready()
 	{
 		_timer = GetNode<Timer>("Timer");
+		_random = new RandomNumberGenerator();
 		_timer.Connect("timeout", this, "_AddMoney");
 		_timer.Start();
 	}
@@ -33,7 +35,7 @@ public class MineBuilding : BaseBuilding
 
 	public void _AddMoney()
 	{
-		Player.Instance.Credits += 10;
+		Player.Instance.Credits += _random.RandiRange(5, 15);
 	}
 
 	protected override IEnumerable<MeshInstance> _GetMesh()

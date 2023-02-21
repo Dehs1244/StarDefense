@@ -26,8 +26,6 @@ public class Player : SpatialSingletone<Player>, IPlayer
 	private RichTextLabel _displayError;
 	private VBoxContainer _notificationPool;
 
-	private Timer _getCredits;
-
 	[Export]
 	private PackedScene _specimenNotification;
 
@@ -40,15 +38,11 @@ public class Player : SpatialSingletone<Player>, IPlayer
 		_displayEnergy = GetNode<Label>("UI/PanelContainer/GridContainer/EnergyLabel");
 		_displayCredits = GetNode<Label>("UI/PanelContainer/GridContainer/CreditsLabel");
 		_displayError = GetNode<RichTextLabel>("UI/ErrorText");
-		_getCredits = GetNode<Timer>("GetCreditsTimer");
-
-		_getCredits.Connect("timeout", this, "_GetCredits");
 	}
 
 	private void _GetCredits()
 	{
-		if (!IsHasTower()) return;
-		Credits += 15;
+		Credits += 50;
 	}
 
 	protected override void _OnAwake()
@@ -93,7 +87,7 @@ public class Player : SpatialSingletone<Player>, IPlayer
 	public void SetMainTower(TowerBuilding tower)
 	{
 		_tower = tower;
-		_getCredits.Start();
+		_GetCredits();
 		AiBuilder.Instance.IsActive = true;
 	}
 

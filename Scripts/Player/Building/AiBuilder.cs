@@ -18,6 +18,9 @@ public class AiBuilder : SpatialSingletone<AiBuilder>
 
     [Export]
     public int MaxEnemies { get; set; }
+    [Export]
+    public int MaxSpawningEnemies { get; set; }
+    private int _spawnedForNow;
 
     public bool IsActive { get; set; }
 
@@ -36,13 +39,14 @@ public class AiBuilder : SpatialSingletone<AiBuilder>
         {
             SpawnedEnemies = 0;
             MaxEnemies += 3;
+            MaxSpawningEnemies++;
         };
     }
 
     public override void _PhysicsProcess(float delta)
     {
         base._PhysicsProcess(delta);
-        if (!Player.Instance.IsHasTower() || SpawnedEnemies >= MaxEnemies) return;
+        if (!Player.Instance.IsHasTower() || IsAllSpawned()) return;
         _timer += 1 * delta;
         if (_timer < _timeout) return;
         _timer = 0;
@@ -63,8 +67,13 @@ public class AiBuilder : SpatialSingletone<AiBuilder>
         transform.origin = new Vector3(toX, transform.origin.y + 4, toZ);
         prefab.GlobalTransform = transform;
         SpawnedEnemies++;
+        _spawnedForNow++;
+        if (_spawnedForNow < MaxSpawningEnemies) _timer = _timeout;
+        else _spawnedForNow = 0;
         //NpcController.Instance.Subscribe(prefab);
     }
+
+    public bool IsAllSpawned() => SpawnedEnemies >= MaxEnemies;
 
     public override AiBuilder CreateInstance()
         => this;

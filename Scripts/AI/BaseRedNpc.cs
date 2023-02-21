@@ -9,6 +9,7 @@ public abstract class BaseRedNpc : BaseNpc, IRedNpcAgent
 {
     public IBlueNpcAgent _target;
     private bool _isMoving;
+    private bool _isAlreadyDead;
 
     protected NavigationAgent _agent;
 
@@ -101,14 +102,16 @@ public abstract class BaseRedNpc : BaseNpc, IRedNpcAgent
 
     public override bool Dead()
     {
-        var isDead = base.Dead();
-        if (isDead)
+        if (_isAlreadyDead) return true;
+
+        _isAlreadyDead = base.Dead();
+        if (_isAlreadyDead)
         {
             WaveController.Instance.TotalEnemies -= 1;
             WaveController.Instance.Destroyed += 1;
         }
 
-        return isDead;
+        return _isAlreadyDead;
     }
 
     public abstract void InteractWithFriendly(IRedNpcAgent npc);

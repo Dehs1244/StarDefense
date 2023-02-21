@@ -48,13 +48,14 @@ public class WaveController : NodeSingletone<WaveController>
 
         _savedDestroyedText = _destroyedDisplay.Text;
         _savedEnemiesText = _enemiesDisplay.Text;
-        _savedWaveText = _enemiesDisplay.Text;
+        _savedWaveText = _waveDisplay.Text;
     }
 
     public void Update()
     {
-        if (TotalEnemies < 1)
+        if (TotalEnemies < 1 && AiBuilder.Instance.IsAllSpawned())
         {
+            _totalEnemies = 0;
             Wave += 1;
             OnNewWave?.Invoke();
         }
