@@ -15,6 +15,7 @@ public class Player : SpatialSingletone<Player>, IPlayer
 
 	public int Energy { get; set; }
 	public int Credits { get; set; }
+	public bool IsEndGame => Health <= 0;
 
 	[Export]
 	public int NotificationTimeout { get; set; }
@@ -25,6 +26,9 @@ public class Player : SpatialSingletone<Player>, IPlayer
 	private Label _displayCredits;
 	private RichTextLabel _displayError;
 	private VBoxContainer _notificationPool;
+	[Export]
+	public NodePath EndGamePath;
+	private PanelContainer _EndGamePanel;
 
 	[Export]
 	private PackedScene _specimenNotification;
@@ -38,6 +42,7 @@ public class Player : SpatialSingletone<Player>, IPlayer
 		_displayEnergy = GetNode<Label>("UI/PanelContainer/GridContainer/EnergyLabel");
 		_displayCredits = GetNode<Label>("UI/PanelContainer/GridContainer/CreditsLabel");
 		_displayError = GetNode<RichTextLabel>("UI/ErrorText");
+		_EndGamePanel = GetNode<PanelContainer>(EndGamePath);
 	}
 
 	private void _GetCredits()
@@ -101,7 +106,11 @@ public class Player : SpatialSingletone<Player>, IPlayer
 	public void RemoveBuilding(IBlueNpcAgent blueAgent)
 	{
 		_buildings.RemoveAll(x=> x == blueAgent);
-		if (blueAgent is TowerBuilding) AiBuilder.Instance.IsActive = false;
+		if (blueAgent is TowerBuilding)
+		{
+			Player.Instance.GetDamage(10);
+			AiBuilder.Instance.IsActive = false;
+		}
 	}
 
 	public Vector3 GetTowerPosition() => _tower.Translation;
@@ -109,6 +118,11 @@ public class Player : SpatialSingletone<Player>, IPlayer
 	public void GetDamage(int damage)
 	{
 		Health -= damage;
+		if (Health <= 0)
+		{
+			_EndGamePanel.Show();
+		}
+		else _EndGamePanel.Hide();
 	}
 
 	public void AddNotification(string notification)

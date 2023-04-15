@@ -13,6 +13,8 @@ public class InputController : NodeSingletone<InputController>
 
 	public override void _Input(InputEvent @event)
 	{
+		if (Player.Instance.IsEndGame) return;
+
 		if (@event is InputEventMouseMotion mouseMotion)
 		{
 			_isMotion = true;

@@ -35,6 +35,7 @@ public sealed class PlayerBuilder : BaseBuilder
             return;
         }
         var rayPosition = (Vector3)rayBuild["position"];
+        var rayNormal = (Vector3)rayBuild["normal"];
         if (!CurrentBuilding.IsCollided)
         {
             CurrentBuilding.CanPlace = true;
@@ -45,6 +46,7 @@ public sealed class PlayerBuilder : BaseBuilder
 
     private void _SetBuildingFollow(Vector3 position)
     {
+        //CurrentBuilding.LookAt(position, Vector3.Up);
         var transform = CurrentBuilding.GlobalTransform;
         transform.origin = position;
         CurrentBuilding.GlobalTransform = transform;
